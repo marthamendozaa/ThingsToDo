@@ -15,6 +15,7 @@ struct ThingsToDoApp: App {
             TabView {
                 Tab("Today", systemImage: "checklist") {
                     ContentView()
+                       // .modelContainer(for: Task.self)
                 }
                 
                 Tab("Calendar", systemImage: "calendar") {
@@ -31,3 +32,8 @@ struct ThingsToDoApp: App {
         // create the storage for the destination object. use that storage for all the data inside the windowgroup
     }
 }
+
+
+
+
+

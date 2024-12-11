@@ -13,7 +13,8 @@ struct ContentView: View {
     // 5 - its save to be done in any. store our objects
     @Environment(\.modelContext) var modelContext
     // 4- Query marco from swiftdata, it'll read all destination objects currently being stored by our swiftdata database. It also watches the database for changes, refreshes its array and tells swiftui to iupdate
-    @Query var tasks: [Task]
+    @Query(sort: \Task.text) var tasks: [Task]
+   
     // 11 - now show this
     @State private var path = [Task]()
     
@@ -88,6 +89,10 @@ struct ContentView: View {
 }
     
 
-#Preview {
+
+
+
+#Preview(traits: .mockData) {
     ContentView()
 }
+

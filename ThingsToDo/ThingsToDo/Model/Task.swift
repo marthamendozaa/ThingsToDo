@@ -13,16 +13,16 @@ import SwiftData
 // 2- ADD MODEL save and load destination object inside its permanent storage
 @Model
 class Task {
-    var id: UUID
-    var date: Date
-    var completed: Bool
+    //var id: UUID
+    var dueDate: Date
     var text: String
+    var completed: Bool
     
-    init(date: Date = .now, completed: Bool = false, text: String = "") {
-        self.id = UUID()
-        self.date = date
-        self.completed = completed
+    init(dueDate: Date = .now, text: String = "", completed: Bool = false) {
+        //self.id = UUID()
+        self.dueDate = dueDate
         self.text = text
+        self.completed = completed
     }
     
 }

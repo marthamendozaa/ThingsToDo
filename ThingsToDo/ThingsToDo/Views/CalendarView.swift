@@ -25,7 +25,7 @@ struct CalendarView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Task.dueDate) private var tasks: [Task]
     
-    @State private var selectedDate: Date? = nil
+    @State private var selectedDate: Date? = .now
     @State private var tasksForSelectedDate: [Task] = []
     
     var body: some View {
@@ -36,32 +36,32 @@ struct CalendarView: View {
             
             // Display tasks for selected date
             if let selectedDate = selectedDate {
-                List(tasksForSelectedDate) { task in
-                    HStack {
-                        Text(task.text)
-                        Spacer()
-                        if task.completed {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                        } else {
-                            Image(systemName: "circle")
-                                .foregroundColor(.gray)
-                        }
+                List {
+                    
+                    ForEach(tasksForSelectedDate) { task in
+                        
+                        RowTaskView(task: task)
+                        
                     }
+                    .onDelete(perform: deleteTasks)
                 }
                 .navigationTitle("Tasks for \(formattedDate(selectedDate))")
                 .onAppear {
                     updateTasksForSelectedDate()
                 }
+
             } else {
                 Text("Select a date to see tasks.")
                     .font(.headline)
                     .padding()
             }
         }
-        .onChange(of: selectedDate) { _ in
-            updateTasksForSelectedDate()
+        .onChange(of: selectedDate) { oldDate, newDate in
+            if oldDate != newDate {
+                updateTasksForSelectedDate()
+            }
         }
+        
     }
     
     // Update tasks for the selected date
@@ -82,6 +82,19 @@ struct CalendarView: View {
         formatter.dateStyle = .medium
         return formatter.string(from: date)
     }
+    
+    
+    func deleteTasks(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let taskToDelete = tasksForSelectedDate[index]
+            // Update the main tasks array by deleting from SwiftData
+            modelContext.delete(taskToDelete)
+        }
+        
+        // Re-fetch tasks for the selected date to ensure the UI is in sync
+        updateTasksForSelectedDate()
+    }
+
 }
 
 // UIViewRepresentable for UICalendarView

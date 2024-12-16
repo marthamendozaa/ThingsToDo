@@ -6,7 +6,55 @@
 //
 
 import SwiftUI
+import SwiftData
 
+
+struct NewTaskView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    @State private var taskText: String = ""
+    @State private var dueDate: Date = .now
+    @Query(sort: \Folder.name) private var folders: [Folder]
+    @State private var selectedFolder: Folder?
+
+    var folder: Folder?
+
+    var body: some View {
+        NavigationView {
+            Form {
+                TextField("Task Description", text: $taskText)
+                DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+
+                Picker("Folder", selection: $selectedFolder) {
+                    Text("No Folder").tag(nil as Folder?)
+                    ForEach(folders) { folder in
+                        Text(folder.name).tag(folder as Folder?)
+                    }
+                }
+            }
+            .navigationTitle("New Task")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save Task") {
+                        let newTask = Task(dueDate: dueDate, text: taskText, folder: selectedFolder ?? folder)
+                        modelContext.insert(newTask)
+                        dismiss()
+                    }
+                    .disabled(taskText.isEmpty)
+                }
+            }
+            .onAppear {
+                selectedFolder = folder
+            }
+        }
+    }
+}
+/*
 struct NewTaskView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -41,7 +89,9 @@ struct NewTaskView: View {
         }
     }
 }
-
+*/
 #Preview {
     NewTaskView()
 }
+
+

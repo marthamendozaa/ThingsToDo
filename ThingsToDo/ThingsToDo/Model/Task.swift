@@ -5,7 +5,7 @@
 //  Created by Martha Mendoza Alfaro on 10/12/24.
 //
 
-import Foundation
+import SwiftUI
 // 1- ADD SWIFT DATA
 import SwiftData
 
@@ -13,10 +13,14 @@ import SwiftData
 @Model
 class Folder {
     var name: String
+    var color: Color
+    var icon: String
     var tasks: [Task] = [] // One-to-many relationship
     
-    init(name: String) {
+    init(name: String, color: Color = .blue, icon: String = "star.fill") {
         self.name = name
+        self.color = color
+        self.icon = icon
     }
 }
 

@@ -10,6 +10,16 @@ import Foundation
 import SwiftData
 
 
+@Model
+class Folder {
+    var name: String
+    var tasks: [Task] = [] // One-to-many relationship
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
 // 2- ADD MODEL save and load destination object inside its permanent storage
 @Model
 class Task {
@@ -17,12 +27,16 @@ class Task {
     var dueDate: Date
     var text: String
     var completed: Bool
+    var isEditing: Bool = false
+    var folder: Folder? // Optional relationship to a folder
     
-    init(dueDate: Date = .now, text: String = "", completed: Bool = false) {
+    init(dueDate: Date = .now, text: String = "", completed: Bool = false, isEditing: Bool = false, folder: Folder? = nil) {
         //self.id = UUID()
         self.dueDate = dueDate
         self.text = text
         self.completed = completed
+        self.isEditing = isEditing
+        self.folder = folder
     }
     
 }

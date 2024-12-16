@@ -23,12 +23,12 @@ struct MockData: PreviewModifier {
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
         
-        container.mainContext.insert(Task(text: "Unsalted butter"))
-        container.mainContext.insert(Task(text: "Dark chocolate"))
-        container.mainContext.insert(Task(text: "Eggs"))
-        container.mainContext.insert(Task(text: "Caster sugar"))
-        container.mainContext.insert(Task(text: "Cocoa powder"))
-        container.mainContext.insert(Task(text: "All-purpose flour"))
+        container.mainContext.insert(Task(dueDate: Date(),text: "Unsalted butter"))
+        container.mainContext.insert(Task(dueDate: Date(), text: "Dark chocolate"))
+        container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Eggs"))
+        container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Caster sugar"))
+        container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Cocoa powder"))
+        container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())!, text: "All-purpose flour"))
         
         return container
     }

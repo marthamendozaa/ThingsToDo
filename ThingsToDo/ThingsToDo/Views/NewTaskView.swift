@@ -11,20 +11,15 @@ struct NewTaskView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @State private var taskText: String = ""
+    @State private var dueDate: Date = .now // Default to today
     
     var body: some View {
         NavigationView {
             Form {
                 TextField("Task Description", text: $taskText)
                 
-                Section {
-                    Button("Save Task") {
-                        let newTask = Task(text: taskText)
-                        modelContext.insert(newTask) // Save task to SwiftData
-                        dismiss() // Close the sheet
-                    }
-                    .disabled(taskText.isEmpty) // Disable button if no text
-                }
+                DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                
             }
             .navigationTitle("New Task")
             .toolbar {
@@ -32,6 +27,15 @@ struct NewTaskView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save Task") {
+                        let newTask = Task(dueDate: dueDate, text: taskText)
+                        modelContext.insert(newTask) // Save task to SwiftData
+                        dismiss()
+                    }
+                    .disabled(taskText.isEmpty)
                 }
             }
         }

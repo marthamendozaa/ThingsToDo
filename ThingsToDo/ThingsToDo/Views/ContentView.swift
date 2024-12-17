@@ -21,7 +21,7 @@ struct ContentView: View {
     
    
     // 11 - now show this
-    @State private var path = [Task]()
+    @State private var path = [Folder]()
     
     @State private var showingFolderSheet = false
     @State private var showingTaskSheet = false
@@ -31,30 +31,23 @@ struct ContentView: View {
     var body: some View {
         // 11 - bind it to the path of our nav stack
         NavigationStack(path: $path) {
-            
-            List(folders) { folder in
-                FolderRow(folder: folder)
-                    .listRowBackground(Color(UIColor.systemGray6)) // Keep gray background
-                    .foregroundStyle(Color.primary) // Ensure text has no white outline
-                
-                
-            }
-            .scrollContentBackground(.hidden) // Hide white content background
-            .background(Color(UIColor.systemGray6)) // Set overall background to gray
-            //.scrollContentBackground(.hidden)
-            .background(Color.clear)
-            
-            
             List {
-                ForEach(tasksDueToday) { task in
-                    
-                    RowTaskView(task: task)
-                    
+                
+                ForEach(folders) { folder in
+                    let tasksDueToday = tasksForToday(in: folder)
+                    if !tasksDueToday.isEmpty {
+                        FolderRow(folder: folder, tasks: tasksDueToday)
+                            .listRowBackground(Color(UIColor.systemGray6)) // Keep gray background
+                            .foregroundStyle(Color.primary) // Ensure text has no white outline
+                    }
                 }
-                .onDelete(perform: deleteTasks)
-                // 7 - delete
             }
-            .navigationTitle("Today")
+            .buttonStyle(BorderlessButtonStyle())
+            .scrollContentBackground(.hidden) // Hide white content background
+            //.background(Color(UIColor.systemGray6)) // Set overall background to gray
+            //.background(Color.clear)
+            .navigationTitle("Today ☻♡")
+            
             .toolbar {
                 // 12 - add new button destination
                 ToolbarItem(placement: .primaryAction) {
@@ -70,11 +63,11 @@ struct ContentView: View {
                 }
                 
                 
-                ToolbarItem(placement: .secondaryAction) {
+                ToolbarItem() {
                     Button(action: {
                         showingFolderSheet.toggle()
                     }) {
-                        Label("Create folder", systemImage: "plus")
+                        Label("Create folder", systemImage: "folder.badge.plus")
                             .labelStyle(.titleAndIcon)
                         //Image(systemName: "plus")
                         //Text("Add task")
@@ -90,12 +83,12 @@ struct ContentView: View {
         }
     }
     
-    // 12 - add destination
-    func addTask() {
-        let task = Task()
-        modelContext.insert(task)
-        //show it in our nav stack RN
-        path = [task]
+    // Filter tasks due today for a specific folder
+    private func tasksForToday(in folder: Folder) -> [Task] {
+        let today = Calendar.current.startOfDay(for: Date())
+        return folder.tasks.filter {
+            Calendar.current.isDate($0.dueDate, inSameDayAs: today)
+        }
     }
     
     // Computed property to filter tasks

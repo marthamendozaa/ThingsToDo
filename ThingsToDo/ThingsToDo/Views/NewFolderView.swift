@@ -14,7 +14,7 @@ struct NewFolderView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var folderName: String = ""
-    @State private var color: Color = .blue
+    @State private var selectedColorName: String = "pink" // Default color
     @State private var icon: String = "star.fill"
     
     var body: some View {
@@ -28,34 +28,36 @@ struct NewFolderView: View {
                     VStack {
                         Image(systemName: icon)
                             .resizable()
-                            .foregroundStyle(color)
+                            .foregroundStyle(Folder.colorMap[selectedColorName] ?? .pink)
                             .scaledToFit()
                             .frame(width: dynamicImageSize(), height: dynamicImageSize())
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
                     
-                ColorPickerView(selectedColor: $color)
+                ColorPickerView(selectedColorName: $selectedColorName)
                     
                 IconPickerView(selectedIcon: $icon)
                     
                 //TextField("Folder Name", text: $folderName)
                 
-                Section {
-                    Button("Create Folder") {
-                        let newFolder = Folder(name: folderName, colorName: "blue", icon: icon)
-                        modelContext.insert(newFolder)
-                        dismiss()
-                    }
-                    .disabled(folderName.isEmpty)
-                }
             }
             .navigationTitle("New Folder")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
                     }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Create") {
+                        let newFolder = Folder(name: folderName, colorName: selectedColorName, icon: icon)
+                        modelContext.insert(newFolder)
+                        dismiss()
+                    }
+                    .disabled(folderName.isEmpty)
                 }
             }
         }
@@ -93,20 +95,21 @@ struct NewFolderView: View {
 struct IconPickerView: View {
     @Binding var selectedIcon: String
     
-    let icons: [String] = ["star.fill", "heart.fill", "leaf.fill", "bolt.fill", "flame.fill", "moon.fill"]
+    let icons: [String] = ["star.fill", "heart.fill", "book.closed.fill", "folder.fill", "bag.fill", "moon.fill"]
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(icons, id: \.self) { icon in
                 ZStack {
                     Circle()
                         .fill(selectedIcon == icon ? Color.gray.opacity(0.2) : Color.clear)
-                        .padding(2)
+                        .frame(width: 55, height: 55)
+                    
                     Image(systemName: icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
-                        .foregroundColor(selectedIcon == icon ? .blue : .primary)
+                        .foregroundColor(selectedIcon == icon ? .pink : .primary)
                 }.onTapGesture {
                     selectedIcon = icon
                 }
@@ -128,22 +131,34 @@ struct IconPickerView_Previews: PreviewProvider {
 
 
 struct ColorPickerView: View {
-    @Binding var selectedColor: Color
+    @Binding var selectedColorName: String
     
-    let colors: [Color] = [.red, .blue, .green, .yellow, .pink, .purple]
+    let colors: [(name: String, color: Color)] = [
+        ("red", .red), ("green", .green),
+        ("yellow", .yellow), ("pink", .pink), ("blue", .blue), ("orange", .orange), ("teal", .teal)
+    ]
     
     var body: some View {
         HStack {
-            ForEach(colors, id: \.self) { color in
+            ForEach(colors, id: \.name) { colorItem in
                 ZStack {
-                    Circle().fill()
-                        .foregroundColor(color)
-                        .padding(2)
                     Circle()
-                        .strokeBorder(selectedColor == color ? .gray: .clear, lineWidth: 4)
+                        //.fill()
+                        .fill(colorItem.color)
+                        //.foregroundColor(color)
+                        .padding(2)
+                    
+                    if selectedColorName == colorItem.name {
+                        Circle()
+                            .strokeBorder(Color.gray, lineWidth: 3)
+                            .frame(width: 45, height: 45)
+                    }
+                    /*Circle()
+                        .strokeBorder(selectedColorName == colorItem ? .gray: .clear, lineWidth: 4)
                         .scaleEffect(CGSize(width: 1.2, height: 1.2))
+                     */
                 }.onTapGesture {
-                    selectedColor = color
+                    selectedColorName = colorItem.name
                 }
                 
             }
@@ -156,7 +171,7 @@ struct ColorPickerView: View {
 
 struct ColorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorPickerView(selectedColor: .constant(.yellow))
+        ColorPickerView(selectedColorName: .constant("blue"))
     }
 }
 

@@ -24,7 +24,7 @@ struct ThingsToDoApp: App {
                 
                 Tab("Log", systemImage: "text.book.closed.fill") {
                     //LogView()
-                    FolderListView()
+                    LogView()
                 }
             }
         }

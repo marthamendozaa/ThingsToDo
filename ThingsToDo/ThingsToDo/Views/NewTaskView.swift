@@ -22,17 +22,27 @@ struct NewTaskView: View {
     var body: some View {
         NavigationView {
             Form {
-                TextField("Task Description", text: $taskText)
-                DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
-
-                Picker("Folder", selection: $selectedFolder) {
-                    Text("No Folder").tag(nil as Folder?)
-                    ForEach(folders) { folder in
-                        Text(folder.name).tag(folder as Folder?)
+                Section {
+                    TextField("Write your task here", text: $taskText)
+                        .padding(.top)
+                        .padding(.bottom)
+                }
+                Section {
+                    DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                    
+                }
+                Section {
+                    Picker("Folder", selection: $selectedFolder) {
+                        Text("No Folder").tag(nil as Folder?)
+                        ForEach(folders) { folder in
+                            Text(folder.name).tag(folder as Folder?)
+                        }
                     }
                 }
             }
+            //.formStyle(.grouped)
             .navigationTitle("New Task")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
@@ -40,7 +50,7 @@ struct NewTaskView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save Task") {
+                    Button("Add") {
                         let newTask = Task(dueDate: dueDate, text: taskText, folder: selectedFolder ?? folder)
                         modelContext.insert(newTask)
                         dismiss()

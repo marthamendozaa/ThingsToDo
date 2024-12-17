@@ -15,14 +15,14 @@ class Folder {
     var name: String
     var colorName: String
     var icon: String
-    var tasks: [Task] = [] // One-to-many relationship
+    @Relationship(deleteRule: .cascade) var tasks: [Task] = [] // One-to-many relationship
     
     var color: Color {
         Folder.colorMap[colorName] ?? .blue // Fallback to .blue if not found
     }
     
     // Static mapping of color names to SwiftUI dynamic colors
-    private static let colorMap: [String: Color] = [
+    static let colorMap: [String: Color] = [
         "blue": .blue,
         "red": .red,
         "green": .green,

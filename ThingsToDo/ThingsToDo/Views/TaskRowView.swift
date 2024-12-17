@@ -40,6 +40,7 @@ struct RowTaskView: View {
                     task.isEditing = false
                 }
             } else {
+                
                 Text(task.text)
                     .onTapGesture {
                         task.isEditing = true
@@ -47,6 +48,8 @@ struct RowTaskView: View {
             }
         }
         .contentShape(Rectangle())
+        .padding(.top,10)
+        .padding(.bottom,10)
     }
 }
 

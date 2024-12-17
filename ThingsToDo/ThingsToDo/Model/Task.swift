@@ -13,13 +13,29 @@ import SwiftData
 @Model
 class Folder {
     var name: String
-    var color: Color
+    var colorName: String
     var icon: String
     var tasks: [Task] = [] // One-to-many relationship
     
-    init(name: String, color: Color = .blue, icon: String = "star.fill") {
+    var color: Color {
+        Folder.colorMap[colorName] ?? .blue // Fallback to .blue if not found
+    }
+    
+    // Static mapping of color names to SwiftUI dynamic colors
+    private static let colorMap: [String: Color] = [
+        "blue": .blue,
+        "red": .red,
+        "green": .green,
+        "yellow": .yellow,
+        "orange": .orange,
+        "purple": .purple,
+        "pink": .pink,
+        "teal": .teal
+    ]
+    
+    init(name: String, colorName: String = "blue", icon: String = "star.fill") {
         self.name = name
-        self.color = color
+        self.colorName = colorName
         self.icon = icon
     }
 }

@@ -58,7 +58,7 @@ struct ContentView: View {
                 
                 ToolbarItem(placement: .secondaryAction) {
                     Button(action: {
-                        
+                        showingFolderSheet.toggle()
                     }) {
                         Label("Create folder", systemImage: "plus")
                             .labelStyle(.titleAndIcon)
@@ -69,6 +69,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showingTaskSheet) {
                 NewTaskView()
+            }
+            .sheet(isPresented: $showingFolderSheet) {
+                NewFolderView()
             }
         }
     }

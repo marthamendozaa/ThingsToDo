@@ -43,7 +43,7 @@ struct NewFolderView: View {
                 
                 Section {
                     Button("Create Folder") {
-                        let newFolder = Folder(name: folderName)
+                        let newFolder = Folder(name: folderName, colorName: "blue", icon: icon)
                         modelContext.insert(newFolder)
                         dismiss()
                     }

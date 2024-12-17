@@ -23,6 +23,7 @@ struct RowTaskView: View {
                 }
             } label: {
                 Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
+                    .contentShape(Rectangle())
             }
             .contentTransition(.symbolEffect(.replace))
 
@@ -45,7 +46,10 @@ struct RowTaskView: View {
                     }
             }
         }
+        .contentShape(Rectangle())
     }
 }
 
-
+#Preview {
+    RowTaskView(task: Task(text: "Mock Task", completed: false, isEditing: false))
+}

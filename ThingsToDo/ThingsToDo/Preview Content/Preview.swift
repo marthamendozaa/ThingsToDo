@@ -29,10 +29,10 @@ struct MockData: PreviewModifier {
         container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Caster sugar"))
         container.mainContext.insert(Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Cocoa powder"))
         
-        container.mainContext.insert(Folder(name: "Groceries"))
+        container.mainContext.insert(Folder(name: "Groceries", colorName: "blue", icon: "bag"))
         
         
-        let folder = Folder(name: "Hello")
+        let folder = Folder(name: "Generic")
         container.mainContext.insert(folder)
         
         // Fetch the folder object
@@ -40,8 +40,11 @@ struct MockData: PreviewModifier {
         if let groceriesFolder = try? container.mainContext.fetch(fetchDescriptor).first {
             
             // Insert the new task into the folder
-            let newTask = Task(dueDate: Calendar.current.date(byAdding: .day, value: 1, to: Date())!, text: "Cocoa sweets", folder: groceriesFolder)
+            let newTask = Task(dueDate: Date(), text: "Cocoa sweets", folder: groceriesFolder)
             container.mainContext.insert(newTask)
+            
+            let newTask2 = Task(dueDate: Date(), text: "Cocoa cakes", folder: groceriesFolder)
+            container.mainContext.insert(newTask2)
             
             // Fetch the folder again to verify
             if let updatedFolder = try? container.mainContext.fetch(fetchDescriptor).first {

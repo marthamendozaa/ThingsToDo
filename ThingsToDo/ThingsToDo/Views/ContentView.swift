@@ -31,6 +31,20 @@ struct ContentView: View {
     var body: some View {
         // 11 - bind it to the path of our nav stack
         NavigationStack(path: $path) {
+            
+            List(folders) { folder in
+                FolderRow(folder: folder)
+                    .listRowBackground(Color(UIColor.systemGray6)) // Keep gray background
+                    .foregroundStyle(Color.primary) // Ensure text has no white outline
+                
+                
+            }
+            .scrollContentBackground(.hidden) // Hide white content background
+            .background(Color(UIColor.systemGray6)) // Set overall background to gray
+            //.scrollContentBackground(.hidden)
+            .background(Color.clear)
+            
+            
             List {
                 ForEach(tasksDueToday) { task in
                     

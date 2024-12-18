@@ -47,7 +47,7 @@ struct ContentView: View {
             .scrollContentBackground(.hidden) // Hide white content background
             //.background(Color(UIColor.systemGray6)) // Set overall background to gray
             //.background(Color.clear)
-            .navigationTitle("Today ☻♡")
+            .navigationTitle("Today")
             
             .toolbar {
                 // 12 - add new button destination

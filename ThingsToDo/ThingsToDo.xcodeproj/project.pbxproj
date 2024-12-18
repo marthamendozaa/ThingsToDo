@@ -6,11 +6,51 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4B1E13112D1312E9002BA612 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1E13102D1312E9002BA612 /* WidgetKit.framework */; };
+		4B1E13132D1312E9002BA612 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1E13122D1312E9002BA612 /* SwiftUI.framework */; };
+		4B1E13242D1312EA002BA612 /* ThingsToDoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4B1E130E2D1312E9002BA612 /* ThingsToDoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4B1E13222D1312EA002BA612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2CE74F2D08796D002EDA93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B1E130D2D1312E9002BA612;
+			remoteInfo = ThingsToDoWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4B1E13292D1312EA002BA612 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4B1E13242D1312EA002BA612 /* ThingsToDoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4B1E130E2D1312E9002BA612 /* ThingsToDoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ThingsToDoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1E13102D1312E9002BA612 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		4B1E13122D1312E9002BA612 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4B2CE7572D08796D002EDA93 /* ThingsToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4B1E13282D1312EA002BA612 /* Exceptions for "ThingsToDoWidget" folder in "ThingsToDoWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4B1E130D2D1312E9002BA612 /* ThingsToDoWidgetExtension */;
+		};
 		4B875EE12D12DFA0008DE286 /* Exceptions for "ThingsToDo" folder in "ThingsToDo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,6 +61,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4B1E13142D1312E9002BA612 /* ThingsToDoWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4B1E13282D1312EA002BA612 /* Exceptions for "ThingsToDoWidget" folder in "ThingsToDoWidgetExtension" target */,
+			);
+			path = ThingsToDoWidget;
+			sourceTree = "<group>";
+		};
 		4B2CE7592D08796D002EDA93 /* ThingsToDo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +80,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B1E130B2D1312E9002BA612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B1E13132D1312E9002BA612 /* SwiftUI.framework in Frameworks */,
+				4B1E13112D1312E9002BA612 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B2CE7542D08796D002EDA93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +99,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1E130F2D1312E9002BA612 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B1E13102D1312E9002BA612 /* WidgetKit.framework */,
+				4B1E13122D1312E9002BA612 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4B2CE74E2D08796D002EDA93 = {
 			isa = PBXGroup;
 			children = (
 				4B2CE7592D08796D002EDA93 /* ThingsToDo */,
+				4B1E13142D1312E9002BA612 /* ThingsToDoWidget */,
+				4B1E130F2D1312E9002BA612 /* Frameworks */,
 				4B2CE7582D08796D002EDA93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				4B2CE7572D08796D002EDA93 /* ThingsToDo.app */,
+				4B1E130E2D1312E9002BA612 /* ThingsToDoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +130,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4B1E130D2D1312E9002BA612 /* ThingsToDoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B1E13252D1312EA002BA612 /* Build configuration list for PBXNativeTarget "ThingsToDoWidgetExtension" */;
+			buildPhases = (
+				4B1E130A2D1312E9002BA612 /* Sources */,
+				4B1E130B2D1312E9002BA612 /* Frameworks */,
+				4B1E130C2D1312E9002BA612 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4B1E13142D1312E9002BA612 /* ThingsToDoWidget */,
+			);
+			name = ThingsToDoWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ThingsToDoWidgetExtension;
+			productReference = 4B1E130E2D1312E9002BA612 /* ThingsToDoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4B2CE7562D08796D002EDA93 /* ThingsToDo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B2CE7652D08796E002EDA93 /* Build configuration list for PBXNativeTarget "ThingsToDo" */;
@@ -68,10 +159,12 @@
 				4B2CE7532D08796D002EDA93 /* Sources */,
 				4B2CE7542D08796D002EDA93 /* Frameworks */,
 				4B2CE7552D08796D002EDA93 /* Resources */,
+				4B1E13292D1312EA002BA612 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4B1E13232D1312EA002BA612 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4B2CE7592D08796D002EDA93 /* ThingsToDo */,
@@ -93,6 +186,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					4B1E130D2D1312E9002BA612 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					4B2CE7562D08796D002EDA93 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -113,11 +209,19 @@
 			projectRoot = "";
 			targets = (
 				4B2CE7562D08796D002EDA93 /* ThingsToDo */,
+				4B1E130D2D1312E9002BA612 /* ThingsToDoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B1E130C2D1312E9002BA612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B2CE7552D08796D002EDA93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +232,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B1E130A2D1312E9002BA612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B2CE7532D08796D002EDA93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +248,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4B1E13232D1312EA002BA612 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B1E130D2D1312E9002BA612 /* ThingsToDoWidgetExtension */;
+			targetProxy = 4B1E13222D1312EA002BA612 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		4B1E13262D1312EA002BA612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6299S224BY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThingsToDoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThingsToDoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marthamendoza.ThingsToDo.ThingsToDoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4B1E13272D1312EA002BA612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6299S224BY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThingsToDoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ThingsToDoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marthamendoza.ThingsToDo.ThingsToDoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4B2CE7632D08796E002EDA93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +493,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B1E13252D1312EA002BA612 /* Build configuration list for PBXNativeTarget "ThingsToDoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1E13262D1312EA002BA612 /* Debug */,
+				4B1E13272D1312EA002BA612 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4B2CE7522D08796D002EDA93 /* Build configuration list for PBXProject "ThingsToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -39,7 +39,7 @@ struct LogView: View {
                     .padding(.vertical, 5)
                 }
             }
-            .navigationTitle("Logs ☻♡")
+            .navigationTitle("Logs")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {

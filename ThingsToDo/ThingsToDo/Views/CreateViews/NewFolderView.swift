@@ -23,6 +23,8 @@ struct NewFolderView: View {
                 
                 TextField("Folder Name", text: $folderName)
                     .font(.title)
+                    .accessibilityLabel("\(folderName)")
+                    .accessibilityHint("Enter the name for the new folder")
                 
                 Section {
                     VStack {
@@ -31,13 +33,22 @@ struct NewFolderView: View {
                             .foregroundStyle(Folder.colorMap[selectedColorName] ?? .pink)
                             .scaledToFit()
                             .frame(width: dynamicImageSize(), height: dynamicImageSize())
+                            .accessibilityLabel("Folder icon \(icon)")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
                     
-                ColorPickerView(selectedColorName: $selectedColorName)
-                    
-                IconPickerView(selectedIcon: $icon)
+                Section(header: Text("Choose a Color")) {
+                    ColorPickerView(selectedColorName: $selectedColorName)
+                }
+                .accessibilityLabel("Color Picker")
+                .accessibilityHint("Choose a color for the folder")
+
+                Section(header: Text("Choose an Icon")) {
+                    IconPickerView(selectedIcon: $icon)
+                }
+                .accessibilityLabel("Icon Picker")
+                .accessibilityHint("Choose an icon for the folder")
                     
                 //TextField("Folder Name", text: $folderName)
                 
@@ -58,6 +69,7 @@ struct NewFolderView: View {
                         dismiss()
                     }
                     .disabled(folderName.isEmpty)
+                    .accessibilityHint("Create a new folder")
                 }
             }
         }
@@ -104,14 +116,16 @@ struct IconPickerView: View {
                     Circle()
                         .fill(selectedIcon == icon ? Color.gray.opacity(0.2) : Color.clear)
                         .frame(width: 55, height: 55)
+                        .accessibilityLabel("\(icon.replacingOccurrences(of: ".", with: " ")) icon") // Accessibility label
                     
                     Image(systemName: icon)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
                         .foregroundColor(selectedIcon == icon ? .pink : .primary)
-                }.onTapGesture {
-                    selectedIcon = icon
+                        .onTapGesture {
+                            selectedIcon = icon
+                        }
                 }
                 
             }
@@ -147,6 +161,10 @@ struct ColorPickerView: View {
                         .fill(colorItem.color)
                         //.foregroundColor(color)
                         .padding(2)
+                        .accessibilityLabel(colorItem.name.capitalized) // Accessibility label
+                        .onTapGesture {
+                            selectedColorName = colorItem.name
+                        }
                     
                     if selectedColorName == colorItem.name {
                         Circle()
@@ -154,8 +172,6 @@ struct ColorPickerView: View {
                             .frame(width: 45, height: 45)
                     }
 
-                }.onTapGesture {
-                    selectedColorName = colorItem.name
                 }
                 
             }

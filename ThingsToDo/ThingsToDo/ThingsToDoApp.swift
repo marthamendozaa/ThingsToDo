@@ -52,7 +52,15 @@ struct ThingsToDoApp: App {
         content.body = "Don't forget to log your day and track your progress!"
         content.sound = UNNotificationSound.default
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        //triggers each 60 s
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        
+        // Set the time for 3 PM
+        var dateComponents = DateComponents()
+        dateComponents.hour = 15 // 3 PM in 24-hour format
+        dateComponents.minute = 10
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { error in

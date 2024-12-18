@@ -29,6 +29,8 @@ struct FolderRow: View {
                         //task.isEditing = true
                         isEditing = true
                     }
+                    .accessibilityLabel("\(folder.name) icon")
+                    .accessibilityHint("Tap to edit")
 
                 Text(folder.name)
                     .font(.title3)
@@ -37,6 +39,7 @@ struct FolderRow: View {
                         //task.isEditing = true
                         isEditing = true
                     }
+                    .accessibilityHint("Tap to edit")
 
                 Spacer()
 
@@ -63,9 +66,9 @@ struct FolderRow: View {
                     RowTaskView(task: task)
                 }
                 //.onDelete(perform: deleteTasks)
-                .onDelete { offsets in
+                /*.onDelete { offsets in
                     deleteTasks(at: offsets)
-                }
+                }*/
             }
         }
     }

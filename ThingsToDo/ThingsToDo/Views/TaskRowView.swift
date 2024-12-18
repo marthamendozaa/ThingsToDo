@@ -26,6 +26,8 @@ struct RowTaskView: View {
             } label: {
                 Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
                     .contentShape(Rectangle())
+                    .accessibilityLabel(task.completed ? "Checked task . Double-tap to mark as incomplete." : "Unchecked task. Double-tap to mark as complete.")
+                    .accessibilityAddTraits(.isButton)
             }
             .contentTransition(.symbolEffect(.replace))
                 
@@ -34,6 +36,8 @@ struct RowTaskView: View {
                     //task.isEditing = true
                     isEditing = true
                 }
+                .accessibilityHint("Double-tap to edit")
+                
             
         }
         .contentShape(Rectangle())

@@ -62,6 +62,7 @@ struct EditTaskView: View {
                         Label("Delete Task", systemImage: "trash")
                             .foregroundColor(.red)
                     }
+                    .foregroundColor(.red)
                 }
             }
             .onAppear {

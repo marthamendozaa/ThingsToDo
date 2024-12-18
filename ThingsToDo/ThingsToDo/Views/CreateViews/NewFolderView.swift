@@ -33,7 +33,7 @@ struct NewFolderView: View {
                             .foregroundStyle(Folder.colorMap[selectedColorName] ?? .pink)
                             .scaledToFit()
                             .frame(width: dynamicImageSize(), height: dynamicImageSize())
-                            .accessibilityLabel("Folder icon \(icon)")
+                            .accessibilityLabel("\(icon) icon color \(selectedColorName)")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
@@ -41,14 +41,14 @@ struct NewFolderView: View {
                 Section(header: Text("Choose a Color")) {
                     ColorPickerView(selectedColorName: $selectedColorName)
                 }
-                .accessibilityLabel("Color Picker")
-                .accessibilityHint("Choose a color for the folder")
+                //.accessibilityLabel("Color Picker")
+                //.accessibilityHint("Choose a color for the folder")
 
                 Section(header: Text("Choose an Icon")) {
                     IconPickerView(selectedIcon: $icon)
                 }
-                .accessibilityLabel("Icon Picker")
-                .accessibilityHint("Choose an icon for the folder")
+                //.accessibilityLabel("Icon Picker")
+                //.accessibilityHint("Choose an icon for the folder")
                     
                 //TextField("Folder Name", text: $folderName)
                 
@@ -116,7 +116,7 @@ struct IconPickerView: View {
                     Circle()
                         .fill(selectedIcon == icon ? Color.gray.opacity(0.2) : Color.clear)
                         .frame(width: 55, height: 55)
-                        .accessibilityLabel("\(icon.replacingOccurrences(of: ".", with: " ")) icon") // Accessibility label
+                        //.accessibilityLabel("\(icon.replacingOccurrences(of: ".", with: " ")) icon") // Accessibility label
                     
                     Image(systemName: icon)
                         .resizable()
@@ -126,6 +126,9 @@ struct IconPickerView: View {
                         .onTapGesture {
                             selectedIcon = icon
                         }
+                        .accessibilityLabel("\(icon.replacingOccurrences(of: ".", with: " ")) icon") // Accessibility label
+                        .accessibilityHint("Double-tap to select") // Accessibility label
+                    
                 }
                 
             }
@@ -165,6 +168,7 @@ struct ColorPickerView: View {
                         .onTapGesture {
                             selectedColorName = colorItem.name
                         }
+                        .accessibilityHint("Double-tap to select")
                     
                     if selectedColorName == colorItem.name {
                         Circle()

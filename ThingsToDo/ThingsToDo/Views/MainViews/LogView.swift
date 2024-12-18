@@ -13,30 +13,45 @@ struct LogView: View {
     @Query(sort: \Log.date, order: .reverse) private var logs: [Log] // Fetch logs in reverse chronological order
 
     @State private var showingLogSheet = false
+    @State private var isEditing = false // Local state for editing
+    
+    @State private var selectedLog: Log?
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(logs) { log in
                     VStack(alignment: .leading) {
-                        Text("Date: \(formattedDate(log.date))")
-                            .font(.headline)
-                        Text("Tasks Completed: \(log.completedTasks)")
-                            .font(.subheadline)
+                        Text("Log for \(formattedDate(log.date))")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .onTapGesture {
+                                //task.isEditing = true
+                                isEditing = true
+                                selectedLog = log
+                            }
+                            .accessibilityHint("Double-tap to edit")
+                        HStack {
+                            Image(systemName: log.completedTasks > 0 ? "checklist" : "checklist.unchecked")
+
+                            Text("\(log.completedTasks) completed tasks!")
+                                .font(.headline)
+                        }
                         
                         if !log.reflection.isEmpty {
-                            Text("Reflection: \(log.reflection)")
+                            Text("🌱 \(log.reflection)")
                                 .font(.body)
                                 .foregroundColor(.secondary)
                         }
                         
                         if !log.gratitude.isEmpty {
-                            Text("Gratitude: \(log.gratitude)")
+                            Text("⭐️ \(log.gratitude)")
                                 .font(.body)
                                 .foregroundColor(.secondary)
                         }
                     }
                     .padding(.vertical, 5)
+                    
                 }
             }
             .navigationTitle("Logs")
@@ -53,6 +68,13 @@ struct LogView: View {
             .sheet(isPresented: $showingLogSheet) {
                 NewLogView()
             }
+            .sheet(item: $selectedLog) { log in
+                EditLogView(log: log)
+            }
+
+            /*.sheet(isPresented: $isEditing) {
+                EditLogView(log: log) // Pass the task to edit
+            }*/
         }
     }
 

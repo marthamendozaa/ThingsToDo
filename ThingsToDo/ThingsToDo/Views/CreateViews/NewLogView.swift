@@ -19,14 +19,33 @@ struct NewLogView: View {
 
     var body: some View {
         NavigationView {
+            
             Form {
-                Section(header: Text("Completed Tasks")) {
-                    Text("You completed \(completedTaskCount) tasks today.")
-                        .font(.headline)
+                Section{
+                    if completedTaskCount == 0 {
+                        
+                        HStack(spacing: 20)  {
+                            Image(systemName: "checklist.unchecked")
+                                .imageScale(.large)
+                            
+                            Text("You didn't complete any tasks today. Let's hope for tomorrow!")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                        }
+
+                    } else {
+                        Image(systemName: "checklist")
+                            .imageScale(.large)
+                        
+                        Text("You completed \(completedTaskCount) tasks today. Good job!")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                    }
                 }
                 
                 Section(header: Text("Reflection")) {
                     TextField("What did you do today?", text: $reflection)
+
                 }
                 
                 Section(header: Text("Gratitude")) {
@@ -41,12 +60,17 @@ struct NewLogView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .foregroundColor(.pink)
                 }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         saveLog()
                         dismiss()
                     }
+                    .disabled(reflection.isEmpty)
+                    .disabled(gratitude.isEmpty)
+                    .foregroundColor(.pink)
                 }
             }
             .onAppear {

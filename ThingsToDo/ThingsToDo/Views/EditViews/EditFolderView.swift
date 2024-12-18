@@ -24,6 +24,8 @@ struct EditFolderView: View {
                 Section {
                     TextField("Folder Name", text: $folder.name)
                         .font(.title)
+                        .accessibilityLabel("\(folder.name)")
+                        .accessibilityHint("Enter the name for the new folder")
                 }
                 
                 // Folder Preview
@@ -34,17 +36,18 @@ struct EditFolderView: View {
                             .foregroundStyle(Folder.colorMap[folder.colorName] ?? .pink)
                             .scaledToFit()
                             .frame(width: dynamicImageSize(), height: dynamicImageSize())
+                            .accessibilityLabel("Folder icon \(folder.icon) color \(folder.colorName)")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
                 
                 // Color Picker
-                Section {
+                Section(header: Text("Choose a Color")) {
                     ColorPickerView(selectedColorName: $folder.colorName)
                 }
                 
                 // Icon Picker
-                Section {
+                Section(header: Text("Choose an Icon")) {
                     IconPickerView(selectedIcon: $folder.icon)
                 }
             }

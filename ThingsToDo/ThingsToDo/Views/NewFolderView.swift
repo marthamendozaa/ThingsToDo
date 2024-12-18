@@ -153,10 +153,7 @@ struct ColorPickerView: View {
                             .strokeBorder(Color.gray, lineWidth: 3)
                             .frame(width: 45, height: 45)
                     }
-                    /*Circle()
-                        .strokeBorder(selectedColorName == colorItem ? .gray: .clear, lineWidth: 4)
-                        .scaleEffect(CGSize(width: 1.2, height: 1.2))
-                     */
+
                 }.onTapGesture {
                     selectedColorName = colorItem.name
                 }

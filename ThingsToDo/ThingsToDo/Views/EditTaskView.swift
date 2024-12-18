@@ -9,26 +9,24 @@ import SwiftUI
 import SwiftData
 
 
-struct NewTaskView: View {
+struct EditTaskView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @State private var taskText: String = ""
-    @State private var dueDate: Date = .now
+    @Bindable var task: Task // Bind the task to edit
+    
     @Query(sort: \Folder.name) private var folders: [Folder]
     @State private var selectedFolder: Folder?
-
-    var folder: Folder?
 
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Write your task here", text: $taskText)
+                    TextField("Write your task here", text: $task.text)
                         .padding(.top)
                         .padding(.bottom)
                 }
                 Section {
-                    DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
+                    DatePicker("Due Date", selection: $task.dueDate, displayedComponents: .date)
                     
                 }
                 Section {
@@ -41,7 +39,7 @@ struct NewTaskView: View {
                 }
             }
             //.formStyle(.grouped)
-            .navigationTitle("New Task")
+            .navigationTitle("Edit Task")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -50,27 +48,41 @@ struct NewTaskView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add") {
-                        let newTask = Task(dueDate: dueDate, text: taskText, folder: selectedFolder ?? folder)
-                        modelContext.insert(newTask)
+                    Button("Save") {
+                        task.folder = selectedFolder
                         dismiss()
                     }
-                    .disabled(taskText.isEmpty)
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    Button(role: .destructive, action: deleteTask) {
+                        Label("Delete Task", systemImage: "trash")
+                            .foregroundColor(.red)
+                    }
                 }
             }
             .onAppear {
-                selectedFolder = defaultFolder()
+                selectedFolder = task.folder
             }
         }
     }
     
-    private func defaultFolder() -> Folder? {
-        return folders.first(where: { $0.name == "My To Do List" })
+    private func deleteTask() {
+        modelContext.delete(task)
+        dismiss()
     }
+    
 }
+
+
+
 
 #Preview {
-    NewTaskView()
+    let folder = Folder(name: "My To Do List", colorName: "blue", icon: "list.bullet")
+    let task = Task(dueDate: .now, text: "Mock Task", completed: false, folder: folder)
+    return NavigationStack {
+        EditTaskView(task: task)
+    }
+    .modelContainer(for: [Folder.self, Task.self]) // Simulates SwiftData environment
 }
-
 

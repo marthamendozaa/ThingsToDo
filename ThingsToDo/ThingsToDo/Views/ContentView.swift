@@ -41,6 +41,7 @@ struct ContentView: View {
                             .foregroundStyle(Color.primary) // Ensure text has no white outline
                     }
                 }
+                .onDelete(perform: deleteFolders) // Enable swipe-to-delete for folders
             }
             .buttonStyle(BorderlessButtonStyle())
             .scrollContentBackground(.hidden) // Hide white content background
@@ -81,6 +82,7 @@ struct ContentView: View {
                 NewFolderView()
             }
         }
+        .onAppear { createDefaultFolderIfNeeded() }
     }
     
     // Filter tasks due today for a specific folder
@@ -103,6 +105,23 @@ struct ContentView: View {
         for index in indexSet {
             let task = tasksDueToday[index] // Use filtered tasks
             modelContext.delete(task)
+        }
+    }
+    
+    
+    // Function to ensure the built-in folder exists
+    private func createDefaultFolderIfNeeded() {
+        if !folders.contains(where: { $0.name == "My To Do List" }) {
+            let defaultFolder = Folder(name: "My To Do List", colorName: "blue", icon: "list.bullet")
+            modelContext.insert(defaultFolder)
+        }
+    }
+    
+    // Delete folders
+    private func deleteFolders(at offsets: IndexSet) {
+        for index in offsets {
+            let folder = folders[index]
+            modelContext.delete(folder)
         }
     }
 }

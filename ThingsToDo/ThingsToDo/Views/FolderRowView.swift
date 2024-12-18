@@ -49,7 +49,10 @@ struct FolderRow: View {
                 ForEach(tasks) { task in
                     RowTaskView(task: task)
                 }
-                .onDelete(perform: deleteTasks)
+                //.onDelete(perform: deleteTasks)
+                .onDelete { offsets in
+                    deleteTasks(at: offsets)
+                }
             }
         }
     }
@@ -60,6 +63,11 @@ struct FolderRow: View {
         }
     }
 }
+
+
+
+
+
 
 /*
 struct FolderRow: View {

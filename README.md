@@ -1,6 +1,3 @@
-# ThingsToDo
-
-
 # Things To Do
 
 **Things To Do** is a minimalistic task management and journaling app built with SwiftUI. Designed with simplicity, accessibility, and a native Apple-inspired aesthetic, this app helps users stay organized and reflect on their daily progress.

@@ -82,7 +82,9 @@ struct ContentView: View {
                 NewFolderView()
             }
         }
-        .onAppear { createDefaultFolderIfNeeded() }
+        .onAppear {
+            createDefaultFolderIfNeeded()
+        }
     }
     
     // Filter tasks due today for a specific folder

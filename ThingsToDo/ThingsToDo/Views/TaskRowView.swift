@@ -21,6 +21,7 @@ struct RowTaskView: View {
             Button {
                 withAnimation {
                     task.completed.toggle()
+                    updateTaskNotifications()
                 }
             } label: {
                 Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
@@ -42,6 +43,11 @@ struct RowTaskView: View {
             EditTaskView(task: task) // Pass the task to edit
         }
     }
+    
+    private func updateTaskNotifications() {
+        TaskNotificationHelper.updateNotifications(for: [task]) // Only updating the relevant task
+    }
+    
 }
 
 #Preview {

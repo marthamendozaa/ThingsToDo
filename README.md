@@ -33,7 +33,7 @@
 ## Screenshots
 
 ### Home Screen
-![Journal log entry screen](Img/img3.PNG) ![Home screen showing tasks and folders](Img/img4.PNG)
+<img src="Img/img3.PNG" alt="Home screen showing tasks and folders" width="400"/>
 
 ### Calendar View
 ![Calendar view of tasks](Img/img2.PNG)

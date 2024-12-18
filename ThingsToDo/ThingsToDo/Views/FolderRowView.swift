@@ -15,6 +15,8 @@ struct FolderRow: View {
     @Bindable var folder: Folder
     @State private var isExpanded = true
     var tasks: [Task] // Pass filtered tasks here
+    
+    @State private var isEditing = false // Local state for editing
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,10 +25,18 @@ struct FolderRow: View {
                 Image(systemName: folder.icon)
                     .foregroundStyle(folder.color)
                     .font(.title2)
+                    .onTapGesture {
+                        //task.isEditing = true
+                        isEditing = true
+                    }
 
                 Text(folder.name)
                     .font(.title3)
                     .fontWeight(.semibold)
+                    .onTapGesture {
+                        //task.isEditing = true
+                        isEditing = true
+                    }
 
                 Spacer()
 
@@ -43,6 +53,9 @@ struct FolderRow: View {
             }
             .padding(.top,10)
             .padding(.bottom,10)
+            .sheet(isPresented: $isEditing) {
+                EditFolderView(folder: folder) // Pass the folder to edit
+            }
 
             // Task List
             if isExpanded {

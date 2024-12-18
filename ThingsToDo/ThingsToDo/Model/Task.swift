@@ -9,6 +9,21 @@ import SwiftUI
 // 1- ADD SWIFT DATA
 import SwiftData
 
+@Model
+class Log {
+    var date: Date
+    var completedTasks: Int
+    var gratitude: String
+    var reflection: String
+
+    init(date: Date = .now, completedTasks: Int, gratitude: String = "", reflection: String = "") {
+        self.date = date
+        self.completedTasks = completedTasks
+        self.gratitude = gratitude
+        self.reflection = reflection
+    }
+}
+
 
 @Model
 class Folder {
@@ -60,3 +75,4 @@ class Task {
     }
     
 }
+

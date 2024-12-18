@@ -28,7 +28,7 @@ struct ThingsToDoApp: App {
                 }
             }
         }
-        .modelContainer(for: Task.self)
+        .modelContainer(for: [Task.self, Log.self])
         // 3 - View modifier to our window view when the app launches from 1 to 3 it gives us a complete swift data stack
         // create the storage for the destination object. use that storage for all the data inside the windowgroup
     }

@@ -95,7 +95,7 @@ struct NewFolderView: View {
 struct IconPickerView: View {
     @Binding var selectedIcon: String
     
-    let icons: [String] = ["star.fill", "heart.fill", "book.closed.fill", "folder.fill", "bag.fill", "moon.fill"]
+    let icons: [String] = ["star.fill", "heart.fill", "book.closed.fill", "folder.fill", "bag.fill", "list.bullet"]
     
     var body: some View {
         HStack(spacing: 0) {

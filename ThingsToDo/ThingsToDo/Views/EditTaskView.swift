@@ -46,12 +46,15 @@ struct EditTaskView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .foregroundColor(.pink)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") {
                         task.folder = selectedFolder
                         dismiss()
                     }
+                    .disabled(task.text.isEmpty)
+                    .foregroundColor(.pink)
                 }
                 
                 ToolbarItem(placement: .bottomBar) {
@@ -76,13 +79,4 @@ struct EditTaskView: View {
 
 
 
-
-#Preview {
-    let folder = Folder(name: "My To Do List", colorName: "blue", icon: "list.bullet")
-    let task = Task(dueDate: .now, text: "Mock Task", completed: false, folder: folder)
-    return NavigationStack {
-        EditTaskView(task: task)
-    }
-    .modelContainer(for: [Folder.self, Task.self]) // Simulates SwiftData environment
-}
 

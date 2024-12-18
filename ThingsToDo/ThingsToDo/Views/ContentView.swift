@@ -112,7 +112,7 @@ struct ContentView: View {
     // Function to ensure the built-in folder exists
     private func createDefaultFolderIfNeeded() {
         if !folders.contains(where: { $0.name == "My To Do List" }) {
-            let defaultFolder = Folder(name: "My To Do List", colorName: "blue", icon: "list.bullet")
+            let defaultFolder = Folder(name: "My To Do List", colorName: "pink", icon: "list.bullet")
             modelContext.insert(defaultFolder)
         }
     }

@@ -32,7 +32,14 @@
 
 ## Screenshots
 
-(Include screenshots of your app showcasing its UI and features.)
+### Home Screen
+![Home screen showing tasks and folders](Img/img1.PNG
+
+### Calendar View
+![Calendar view of tasks](Img/img2.PNG)
+
+### Journal Log
+![Journal log entry screen](Img/img3.PNG)
 
 ---
 

@@ -33,13 +33,13 @@
 ## Screenshots
 
 ### Home Screen
-![Home screen showing tasks and folders](Img/img1.PNG
+![Journal log entry screen](Img/img3.PNG) ![Home screen showing tasks and folders](Img/img4.PNG)
 
 ### Calendar View
 ![Calendar view of tasks](Img/img2.PNG)
 
 ### Journal Log
-![Journal log entry screen](Img/img3.PNG)
+![Journal log entry screen](Img/img3.PNG) ![Home screen showing tasks and folders](Img/img5.PNG)
 
 ---
 

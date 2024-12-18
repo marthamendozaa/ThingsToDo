@@ -40,7 +40,7 @@
 <img src="Img/img2.PNG" alt="Home screen showing tasks and folders" width="400"/>
 
 ### Journal Log
-<img src="Img/img1.PNG" alt="Home screen showing tasks and folders" width="400"/>
+<img src="Img/img4.PNG" alt="Home screen showing tasks and folders" width="400"/> <img src="Img/img5.PNG" alt="Home screen showing tasks and folders" width="400"/>
 
 ---
 

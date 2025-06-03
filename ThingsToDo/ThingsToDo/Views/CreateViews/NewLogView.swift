@@ -34,12 +34,14 @@ struct NewLogView: View {
                         }
 
                     } else {
+                        HStack(spacing: 20)  {
                         Image(systemName: "checklist")
                             .imageScale(.large)
                         
                         Text("You completed \(completedTaskCount) tasks today. Good job!")
                             .font(.headline)
                             .fontWeight(.semibold)
+                        }
                     }
                 }
                 

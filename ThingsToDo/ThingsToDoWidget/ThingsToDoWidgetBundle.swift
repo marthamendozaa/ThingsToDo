@@ -13,6 +13,7 @@ struct ThingsToDoWidgetBundle: WidgetBundle {
     var body: some Widget {
         //ThingsToDoWidget()
         //ThingsToDoWidgetControl()
-        ThingsToDoWidgetLiveActivity()
+        //ThingsToDoWidgetLiveActivity()
+        ThingsToDoLiveActivity()
     }
 }

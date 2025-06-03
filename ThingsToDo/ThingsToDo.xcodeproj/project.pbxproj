@@ -275,7 +275,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marthamendoza.ThingsToDo.ThingsToDoWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = marthamendoza.ThingsToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -302,7 +302,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.marthamendoza.ThingsToDo.ThingsToDoWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = marthamendoza.ThingsToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

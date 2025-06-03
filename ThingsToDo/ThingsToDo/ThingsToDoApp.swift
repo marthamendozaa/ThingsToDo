@@ -38,7 +38,7 @@ struct ThingsToDoApp: App {
             } else {
                 print("Notification permission granted: \(granted)")
                 if granted {
-                    scheduleLogReminder()
+                    //scheduleLogReminder()
                 } else {
                     print("User denied notifications.")
                 }
@@ -46,7 +46,7 @@ struct ThingsToDoApp: App {
         }
     }
 
-    private func scheduleLogReminder() {
+    /*private func scheduleLogReminder() {
         let content = UNMutableNotificationContent()
         content.title = "Daily Log Reminder"
         content.body = "Don't forget to log your day and track your progress!"
@@ -79,7 +79,7 @@ struct ThingsToDoApp: App {
                 print("Pending Notification: \(request.identifier), Trigger: \(String(describing: request.trigger))")
             }
         }
-    }
+    }*/
 }
 
 
